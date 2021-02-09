@@ -1,0 +1,7 @@
+hostname: api-fxpractice.oanda.com
+streaming_hostname: stream-fxpractice.oanda.com
+token: 0a10261c59775542a757d56bcca9119f-fd8e1fcd08066daa321229bae768e502
+username: user
+account: 101-004-16102130-001
+alpha_vantage_api: XIS0GPNP1Y2O1UZX
+
