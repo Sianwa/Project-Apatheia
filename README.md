@@ -15,7 +15,6 @@ To run the project ensure that you have
 
 To run the project:
 ````````
-
 #run in order in seperate terminals
 $ redis-server
 `````````
@@ -23,11 +22,9 @@ $ redis-server
 #to activate worker thread
 $ rq worker
 
-`````````
-````````
 #to start server
 $ flask run
-``
+````````
 ******
 
 ## Model Performance
