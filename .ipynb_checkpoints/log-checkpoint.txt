@@ -1,0 +1,2 @@
+|WARNING|2021-02-06 17:36:14,980|Default account set to 1595259, to change use set_default_account().
+|WARNING|2021-02-06 17:36:36,778|Max. number of update request reached, renewing connection.
