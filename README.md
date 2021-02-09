@@ -2,7 +2,6 @@
 
 This is an automated forex trading system built using python. The system uses a pre-trained [Reinforcement Learning model](https://github.com/Sianwa/DeepQNetworks_Project) to trade. Below is an example of how the model performes in the live market.
 
-<<<<<<< HEAD
 Live trading is made possible will the FXCM API and fxcmpy python library. Allowing the model the model to stream price changes and place market orders when as it makes predictions.
 ## Directory
 
@@ -12,10 +11,6 @@ Live trading is made possible will the FXCM API and fxcmpy python library. Allow
  4. [Templates](templates) The web application html files
  5. [Live Bot](LiveBot.py) The reinforcement learning algorithm used in live trading
  
-
-=======
-Live trading is made possible will the FXCM API and [fxcmpy](https://github.com/fxcm/RestAPI/tree/master/fxcm-api-rest-python3-example) python library. Allowing the model the model to stream price changes and place market orders when as it makes predictions.
->>>>>>> 54850ebebd721ecac0b98d668d9afcbc89bcee41
 ********
 
 ## Requirements
