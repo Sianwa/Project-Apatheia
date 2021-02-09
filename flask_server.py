@@ -13,18 +13,26 @@ import json
 import time
 from LiveBot import SimulateTrade
 from fxcmConnect import connection
+from rq import Queue
+import redis
+import time
+from test import background_task
 
 app = Flask(__name__)
         
         
-#Make connection when server loads
+#connections
+#r = redis.Redis()
+#q = Queue(connection=r)
 con = connection()
 
+#----------------------------------------------------------------------------
 @app.route('/')
 def hello():
     #render landing page
     return render_template("index.html")
 
+#---------------------------------------------------------------------------
 @app.route('/trade', methods=['POST'])
 def trade():
     try:
@@ -33,9 +41,8 @@ def trade():
             currency_pair = request.form['currency_pair']
             lotSize = request.form['lot_size']
             render_template("success.html")
-            #returns profits generated
+            #run in the background to avoid blocking main thread
             result = SimulateTrade(currency_pair, lotSize, con)
-            
             print(result)
         else:
             response = "Invalid Inputs"
@@ -43,23 +50,27 @@ def trade():
 
     except Exception as e:
         return render_template("500.html")
-       
+#------------------------------------------------------------------------------       
 #test route
-@app.route('/test', methods=['GET'])
+@app.route('/test')
 def test():
-   return render_template("success.html")
+    n = 100
+    job = q.enqueue(background_task, n)
+    q_len = len(q)
+    return f"Task ({job.id}) added to queue at {job.enqueued_at}. {q_len} tasks"
 
+#-----------------------------------------------------------------------------
 @app.route('/terminate', methods=['POST'])
 def killSwitch():
     try:
         if(con.is_connected()):
-            print(con.get_accounts_summary()['balance'])
+            print("Connection Closed")
             con.close()
-            return "Connection Closed" 
+            return render_template("closed.html")
 
     except Exception as e:
         return render_template("500.html")
-
+#-------------------------------------------------------------------------------
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"),404
@@ -67,7 +78,7 @@ def page_not_found(e):
 @app.errorhandler(500)
 def server_error(e):
     return render_template("500.html"),500
-
+#-------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
