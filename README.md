@@ -29,7 +29,10 @@ $ flask run
 
 ## Model Performance
 Below are some of the live trades performed by the model. They are indicated on the candle charts as either blue or red arrows.
+
 ![](static/images/fxcm_1612791412030.png)
+
+![](static/images/fxcm_1612792671510.png)
 
 ## References
 [q-trader](https://github.com/edwardhdlu/q-trader) 
